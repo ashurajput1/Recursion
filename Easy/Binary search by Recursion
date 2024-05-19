@@ -12,12 +12,9 @@ func helper(arr:[Int],start:Int,end:Int,target:Int) -> Int
     }
     var mid = Int((end + start) / 2)   // mid is the median of start and end
     if (arr[mid] < target)
-    {
-        
-        return helper(arr: arr, start: mid + 1, end: end, target: target)
-        
-    } else if (arr[mid] > target) {
-        
+    { 
+        return helper(arr: arr, start: mid + 1, end: end, target: target)   
+    } else if (arr[mid] > target) {  
         return helper(arr: arr, start: start, end: (mid - 1), target: target)
     }
     return mid
