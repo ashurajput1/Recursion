@@ -1,0 +1,27 @@
+
+func binarySearch(arr:[Int],target:Int) -> Int
+{
+    return helper(arr: arr, start: 0, end: arr.count - 1, target: target)
+}
+
+func helper(arr:[Int],start:Int,end:Int,target:Int) -> Int
+{
+    if (start > end)  // if start is greater than end that means target is not present in the array
+    {
+        return -1
+    }
+    var mid = Int((end + start) / 2)   // mid is the median of start and end
+    if (arr[mid] < target)
+    {
+        
+        return helper(arr: arr, start: mid + 1, end: end, target: target)
+        
+    } else if (arr[mid] > target) {
+        
+        return helper(arr: arr, start: start, end: (mid - 1), target: target)
+    }
+    return mid
+}
+
+var arr = [1,2,3,4,5,6,8,9,10,11]
+print(binarySearch(arr: arr, target: 6))

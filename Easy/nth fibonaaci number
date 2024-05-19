@@ -1,0 +1,18 @@
+
+import UIKit
+
+func fibonacci(n:Int) -> Int
+{
+    
+    if n < 2   // if n == 1 return 1, if n == 0 return 0
+    {
+        return n
+    }
+    return fibonacci(n: n-1) + fibonacci(n: n-2) // sum of second last number and last number
+}
+
+
+let n = 6
+
+
+print(fibonacci(n: 6))  // print nth number of fibonacci series
