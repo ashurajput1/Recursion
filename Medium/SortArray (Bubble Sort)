@@ -1,0 +1,33 @@
+
+
+func bubbleSort(arr:[Int]) -> [Int]
+{
+    var unsortedArr:[Int] = arr
+    return helper(arr: &unsortedArr, rotations: 0, currentIndex: 0)
+}
+
+
+func helper(arr: inout [Int],rotations:Int,currentIndex:Int) -> [Int]
+{
+    if rotations == arr.count
+    {
+        return arr
+    }
+    else if currentIndex == (arr.count - 1)
+    {
+       return helper(arr: &arr, rotations: rotations + 1, currentIndex: 0)
+    } else
+    {
+        if (arr[currentIndex] >= arr[currentIndex+1])
+        {
+            var c = arr[currentIndex]
+            arr[currentIndex] = arr[currentIndex+1]
+            arr[currentIndex+1] = c
+        }
+        return helper(arr: &arr, rotations: rotations, currentIndex: currentIndex+1)
+    }
+}
+
+var unsortedArr:[Int] = []
+var sortedArr = bubbleSort(arr: unsortedArr)
+print(sortedArr)
