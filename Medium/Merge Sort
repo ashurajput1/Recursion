@@ -1,0 +1,49 @@
+
+    func mergeSort(arr: inout [Int]) {
+        helper(arr: &arr, start: 0, end: arr.count - 1)
+    }
+
+    func helper(arr: inout [Int], start: Int, end: Int) {
+        if start >= end {
+            return
+        }
+        let mid = (start + end) / 2
+        helper(arr: &arr, start: start, end: mid)
+        helper(arr: &arr, start: mid + 1, end: end)
+        merge(arr: &arr, start: start, mid: mid, end: end)
+    }
+
+    func merge(arr: inout [Int], start: Int, mid: Int, end: Int) {
+        var tempArr: [Int] = []
+        var i = start
+        var j = mid + 1
+
+        while i <= mid && j <= end {
+            if arr[i] < arr[j] {
+                tempArr.append(arr[i])
+                i += 1
+            } else {
+                tempArr.append(arr[j])
+                j += 1
+            }
+        }
+
+        while i <= mid {
+            tempArr.append(arr[i])
+            i += 1
+        }
+
+        while j <= end {
+            tempArr.append(arr[j])
+            j += 1
+        }
+
+        for k in 0..<tempArr.count {
+            arr[start + k] = tempArr[k]
+        }
+    }
+
+
+    var unsortedArr: [Int] = [5, 4, 3, 2, 1]
+    mergeSort(arr: &unsortedArr)
+    print(unsortedArr)
