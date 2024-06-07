@@ -1,0 +1,28 @@
+
+import UIKit
+
+func removeCharacter(arr:inout [String],newArr:inout [String],target:String) -> [String]
+    {
+        if arr.count == 0
+        {
+            return newArr
+        }
+
+        let v = arr[0]
+        arr.remove(at: 0)
+
+        if v != target
+        {
+            newArr.append(v)
+        }
+
+        return removeCharacter(arr: &arr,newArr: &newArr, target: target)
+}
+
+var arr: [String] = ["a","b","c","b","a","z","y"]
+var newArr:[String] = []
+var target = "a"
+
+
+print(removeCharacter(arr: &arr, newArr: &newArr, target: target))
+

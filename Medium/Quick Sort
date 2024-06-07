@@ -1,0 +1,36 @@
+func quickSort(arr:inout [Int],start:Int,end:Int)
+{
+
+    var i = start
+    var j = end
+    if start >= end
+    {
+        return
+    }
+    let m = (i + j)/2
+    let pivot = arr[m]
+    while (i<j)
+    {
+        while (arr[i] < pivot) {
+            i += 1
+        }
+        while (arr[j] > pivot) {
+            j -= 1
+        }
+        if (i<j)
+        {
+            var c = arr[j]
+            arr[j] = arr[i]
+            arr[i] = c
+            i += 1
+            j -= 1
+        }
+            
+     }
+     quickSort(arr: &arr, start: start, end: m - 1)
+     quickSort(arr: &arr, start: m + 1, end: end)
+}
+
+var unsortedArr: [Int] = [5, 4, 3, 2, 1]
+quickSort(arr: &unsortedArr,start:Int,end:Int)
+print(unsortedArr)
