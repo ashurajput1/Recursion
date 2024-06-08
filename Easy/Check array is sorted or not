@@ -1,27 +1,30 @@
-
 import UIKit
 
+// Function to check if the array is sorted in ascending order.
 
-func checkSorted(arr:[Int]) -> Bool
-{
+func checkSorted(arr: [Int]) -> Bool {
     return helper(arr: arr, index: 0)
 }
 
 
-func helper(arr:[Int],index:Int) -> Bool
-{
-    if (index+1) == arr.count
-    {
+func helper(arr: [Int], index: Int) -> Bool {
+
+    // Base case: If the current index is the last element, the array is sorted.
+    if (index + 1) == arr.count {
         return true
     }
-    if (arr[index+1] < arr[index])
-    {
-        return false
-    }
-    return helper(arr: arr, index: index + 1)
     
+    // Check if the current element is greater than the next element.
+    if arr[index + 1] < arr[index] {
+        return false // If so, the array is not sorted.
+    }
+    
+    // Recursively call the helper function for the next index.
+    return helper(arr: arr, index: index + 1)
 }
 
+// Define the array to be checked.
+var arr = [1, 2, 3, 4, 5, 7, 6, 8, 9]
 
-var arr = [1,2,3,4,5,7,6,8,9]
-print(checkSorted(arr: arr))
+// Print the result of the checkSorted function.
+print(checkSorted(arr: arr)) // Output should be 'false' as the array is not sorted.

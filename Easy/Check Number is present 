@@ -1,0 +1,25 @@
+import UIKit
+
+// Function to check if a number is present in the array using recursion
+func isNumberPresent(arr: [Int], target: Int, index: Int) -> Bool {
+    // Base case: If index exceeds the array bounds, the number is not found
+    if index >= arr.count {
+        return false
+    }
+    
+    // Check if the current element is equal to the target number
+    if arr[index] == target {
+        return true
+    }
+    
+    // Recursive call with the next index
+    return isNumberPresent(arr: arr, target: target, index: index + 1)
+}
+
+// Example usage
+let array = [1, 2, 3, 4, 5]
+let targetNumber = 3
+
+// Check if the target number is present in the array
+let isPresent = isNumberPresent(arr: array, target: targetNumber, index: 0)
+print("Is \(targetNumber) present in the array? \(isPresent ? "Yes" : "No")")

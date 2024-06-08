@@ -1,16 +1,25 @@
 import UIKit
 
+// Function to check the factorial of the nth number
 
 func factorial(n:Int) -> Int
 {
+    // Base Case - if n is 1 return 1 because the factorial of the 1 is 1
+
     if n == 1
     {
         return 1
     }
     
+    // Recursive Case: If n > 1, recursively call the factorial function with (n - 1)
+    // and multiply the result by n.
+
     return n * factorial(n: (n-1))
 }
 
+// Test the factorial function with n = 5
 var n = 5
+
+// Print the factorial of 5, which should be 120 (5! = 5 * 4 * 3 * 2 * 1)
 
 print(factorial(n: n))

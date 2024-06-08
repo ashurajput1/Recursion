@@ -1,28 +1,19 @@
-
 import UIKit
 
-func removeCharacter(arr:inout [String],newArr:inout [String],target:String) -> [String]
-    {
-        if arr.count == 0
-        {
-            return newArr
-        }
-
-        let v = arr[0]
-        arr.remove(at: 0)
-
-        if v != target
-        {
-            newArr.append(v)
-        }
-
-        return removeCharacter(arr: &arr,newArr: &newArr, target: target)
+// Recursive function to remove all occurrences of a target character from an array of strings
+func removeCharacter(arr: inout [String], newArr: inout [String], target: String) -> [String] {
+    if arr.isEmpty { return newArr }  // Base case: If 'arr' is empty, return 'newArr'
+    let v = arr.removeFirst()  // Remove first element
+    if v != target { 
+        newArr.append(v) 
+    }  // Append if not target
+    return removeCharacter(arr: &arr, newArr: &newArr, target: target)  // Recursive call
 }
 
-var arr: [String] = ["a","b","c","b","a","z","y"]
-var newArr:[String] = []
-var target = "a"
+// Example usage:
+var arr: [String] = ["a", "b", "c", "b", "a", "z", "y"]  // Original
+var newArr: [String] = []  // Result after removal
+let target = "a"  // Target to remove
+print(removeCharacter(arr: &arr, newArr: &newArr, target: target))  // Print result
 
-
-print(removeCharacter(arr: &arr, newArr: &newArr, target: target))
 

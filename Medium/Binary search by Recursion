@@ -1,24 +1,28 @@
+import UIKit
 
-func binarySearch(arr:[Int],target:Int) -> Int
-{
+// Function to perform binary search on a sorted array
+func binarySearch(arr: [Int], target: Int) -> Int {
     return helper(arr: arr, start: 0, end: arr.count - 1, target: target)
 }
 
-func helper(arr:[Int],start:Int,end:Int,target:Int) -> Int
-{
-    if (start > end)  // if start is greater than end that means target is not present in the array
-    {
+// Recursive helper function to perform the binary search
+func helper(arr: [Int], start: Int, end: Int, target: Int) -> Int {
+    if start > end {  // Base Case: target not found if start index exceeds end index
         return -1
     }
-    var mid = Int((end + start) / 2)   // mid is the median of start and end
-    if (arr[mid] < target)
-    { 
-        return helper(arr: arr, start: mid + 1, end: end, target: target)   
-    } else if (arr[mid] > target) {  
-        return helper(arr: arr, start: start, end: (mid - 1), target: target)
+    
+    let mid = (start + end) / 2  // Calculate midpoint index
+    
+    if arr[mid] < target {  // Search in the right half if target is greater
+        return helper(arr: arr, start: mid + 1, end: end, target: target)
+    } else if arr[mid] > target {  // Search in the left half if target is smaller
+        return helper(arr: arr, start: start, end: mid - 1, target: target)
     }
-    return mid
+    
+    return mid  // Return index if the target is found at mid
 }
 
-var arr = [1,2,3,4,5,6,8,9,10,11]
-print(binarySearch(arr: arr, target: 6))
+// Example usage
+var arr = [1, 2, 3, 4, 5, 6, 8, 9, 10, 11]  // Sorted array to search in
+print(binarySearch(arr: arr, target: 6))  // Should print 5, the index of 6
+

@@ -1,36 +1,40 @@
-func quickSort(arr:inout [Int],start:Int,end:Int)
-{
+import UIkit
 
-    var i = start
-    var j = end
-    if start >= end
-    {
+// Function to perform quick sort on the array
+func quickSort(arr: inout [Int], start: Int, end: Int) {
+    var i = start  // Pointer for the left side of partition
+    var j = end  // Pointer for the right side of partition
+    
+    if start >= end {  // Base case: array segment contains 0 or 1 element
         return
     }
-    let m = (i + j)/2
-    let pivot = arr[m]
-    while (i<j)
-    {
-        while (arr[i] < pivot) {
+    
+    let m = (i + j) / 2  // Calculate the middle index
+    let pivot = arr[m]  // Choose pivot element
+    
+    while i < j {  // Partitioning loop
+        while arr[i] < pivot {  // Move i to the right until element >= pivot
             i += 1
         }
-        while (arr[j] > pivot) {
+        while arr[j] > pivot {  // Move j to the left until element <= pivot
             j -= 1
         }
-        if (i<j)
-        {
-            var c = arr[j]
-            arr[j] = arr[i]
-            arr[i] = c
+        
+        if i < j {  // Swap elements if i < j
+            let temp = arr[i]
+            arr[i] = arr[j]
+            arr[j] = temp
             i += 1
             j -= 1
         }
-            
-     }
-     quickSort(arr: &arr, start: start, end: m - 1)
-     quickSort(arr: &arr, start: m + 1, end: end)
+    }
+    
+    // Recursively sort the left and right partitions
+    quickSort(arr: &arr, start: start, end: m - 1)
+    quickSort(arr: &arr, start: m + 1, end: end)
 }
 
-var unsortedArr: [Int] = [5, 4, 3, 2, 1]
-quickSort(arr: &unsortedArr,start:Int,end:Int)
-print(unsortedArr)
+// Example usage
+var unsortedArr: [Int] = [5, 4, 3, 2, 1]  // Unsorted array
+quickSort(arr: &unsortedArr, start: 0, end: unsortedArr.count - 1)  // Sort the array using quick sort
+print(unsortedArr)  // Print the sorted array

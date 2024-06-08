@@ -1,33 +1,26 @@
-
-
-func bubbleSort(arr:[Int]) -> [Int]
-{
-    var unsortedArr:[Int] = arr
+// Function to perform bubble sort on an array
+func bubbleSort(arr: [Int]) -> [Int] {
+    var unsortedArr: [Int] = arr  // Copy of the input array to sort
     return helper(arr: &unsortedArr, rotations: 0, currentIndex: 0)
 }
 
-
-func helper(arr: inout [Int],rotations:Int,currentIndex:Int) -> [Int]
-{
-    if rotations == arr.count
-    {
+// Recursive helper function for bubble sort
+func helper(arr: inout [Int], rotations: Int, currentIndex: Int) -> [Int] {
+    if rotations == arr.count {  // Base case: All rotations completed
         return arr
-    }
-    else if currentIndex == (arr.count - 1)
-    {
-       return helper(arr: &arr, rotations: rotations + 1, currentIndex: 0)
-    } else
-    {
-        if (arr[currentIndex] >= arr[currentIndex+1])
-        {
-            var c = arr[currentIndex]
-            arr[currentIndex] = arr[currentIndex+1]
-            arr[currentIndex+1] = c
+    } else if currentIndex == (arr.count - 1) {  // End of one full pass
+        return helper(arr: &arr, rotations: rotations + 1, currentIndex: 0)
+    } else {
+        if arr[currentIndex] > arr[currentIndex + 1] {  // Swap if current element is greater
+            var temp = arr[currentIndex]
+            arr[currentIndex] = arr[currentIndex + 1]
+            arr[currentIndex + 1] = temp
         }
-        return helper(arr: &arr, rotations: rotations, currentIndex: currentIndex+1)
+        return helper(arr: &arr, rotations: rotations, currentIndex: currentIndex + 1)
     }
 }
 
-var unsortedArr:[Int] = []
-var sortedArr = bubbleSort(arr: unsortedArr)
-print(sortedArr)
+// Example usage
+var unsortedArr: [Int] = []  // Unsorted array
+var sortedArr = bubbleSort(arr: unsortedArr)  // Sorted array using bubble sort
+print(sortedArr)  // Print the sorted array
