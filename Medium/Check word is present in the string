@@ -1,7 +1,7 @@
 Import UIKit
 
 
-func wordPresent(in string:String,word:String) -> Bool {
+func isWordPresent(in string:String,word:String) -> Bool {
     
     if string.isEmpty {   // Base Case:- if the main string gets empty return false
         return false
@@ -9,7 +9,7 @@ func wordPresent(in string:String,word:String) -> Bool {
       return true
     }
     
-    return wordPresent(in: String(string.dropFirst()), word: word)
+    return isWordPresent(in: String(string.dropFirst()), word: word)
 }
 
 let mainString = "Hello, this is a sample string."
@@ -17,4 +17,4 @@ let searchWord = "sample"
 
 // Print the Result seacrhWord Present in the string or not
 
-print(wordPresent(in: mainString, word: searchWord))
+print(isWordPresent(in: mainString, word: searchWord))
